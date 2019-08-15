@@ -1,4 +1,6 @@
 import {Oferta} from './shared/oferta.model'
+import { resolve } from 'url';
+import { reject } from 'q';
 
 export class OfertasService {
 
@@ -56,4 +58,13 @@ export class OfertasService {
     public getOfertas(): Array<Oferta> {
         return this.ofertas
     }
+
+    public getOfertas2(): Promise<Oferta[]>{
+        return new Promise((resolve,reject) => {
+            //algum tipo de processamento que ao finalizar, chama a funcao resolve ou reject
+            console.log('passou pelo promisse')
+            resolve(this.ofertas)
+        })
+    }
+
 }
