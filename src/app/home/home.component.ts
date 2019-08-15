@@ -20,9 +20,10 @@ export class HomeComponent implements OnInit {
     // console.log(this.ofertas)
 
     this.ofertasService.getOfertas2()
-      .then((ofer: Oferta[]) => { //o then retorna quando a promise for resolvida ( ofer: oferta[]) é a variavel e o tipo de dado que sera recebido
-        this.ofertas = ofer //setando o retorno da promise resolvida no this.ofertas
-      })
+      .then(
+        (ofer: Oferta[]) => { this.ofertas = ofer} ,    //aqui é o primeiro parametro, o resolve
+        (param: any) => { console.log(param) }          //aqui é o segundo parametro, o reject
+      )
 
   }
 

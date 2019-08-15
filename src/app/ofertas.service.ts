@@ -1,4 +1,4 @@
-import {Oferta} from './shared/oferta.model'
+import { Oferta } from './shared/oferta.model'
 import { resolve } from 'url';
 import { reject } from 'q';
 
@@ -14,10 +14,10 @@ export class OfertasService {
             valor: 29.90,
             destaque: true,
             imagens: [
-                {url: "/assets/ofertas/1/img1.jpg"},
-                {url: "/assets/ofertas/1/img2.jpg"},
-                {url: "/assets/ofertas/1/img3.jpg"},
-                {url: "/assets/ofertas/1/img4.jpg"}
+                { url: "/assets/ofertas/1/img1.jpg" },
+                { url: "/assets/ofertas/1/img2.jpg" },
+                { url: "/assets/ofertas/1/img3.jpg" },
+                { url: "/assets/ofertas/1/img4.jpg" }
             ]
         },
         {
@@ -29,12 +29,12 @@ export class OfertasService {
             valor: 32.90,
             destaque: true,
             imagens: [
-                {url: "/assets/ofertas/2/img1.jpg"},
-                {url: "/assets/ofertas/2/img2.jpg"},
-                {url: "/assets/ofertas/2/img3.jpg"},
-                {url: "/assets/ofertas/2/img4.jpg"}
+                { url: "/assets/ofertas/2/img1.jpg" },
+                { url: "/assets/ofertas/2/img2.jpg" },
+                { url: "/assets/ofertas/2/img3.jpg" },
+                { url: "/assets/ofertas/2/img4.jpg" }
             ]
-        
+
         },
         {
             id: 4,
@@ -45,12 +45,12 @@ export class OfertasService {
             valor: 31.90,
             destaque: true,
             imagens: [
-                {url: "/assets/ofertas/3/img1.jpg"},
-                {url: "/assets/ofertas/3/img2.jpg"},
-                {url: "/assets/ofertas/3/img3.jpg"},
-                {url: "/assets/ofertas/3/img4.jpg"},
-                {url: "/assets/ofertas/3/img5.jpg"},
-                {url: "/assets/ofertas/3/img6.jpg"}
+                { url: "/assets/ofertas/3/img1.jpg" },
+                { url: "/assets/ofertas/3/img2.jpg" },
+                { url: "/assets/ofertas/3/img3.jpg" },
+                { url: "/assets/ofertas/3/img4.jpg" },
+                { url: "/assets/ofertas/3/img5.jpg" },
+                { url: "/assets/ofertas/3/img6.jpg" }
             ]
         }
     ]
@@ -59,11 +59,18 @@ export class OfertasService {
         return this.ofertas
     }
 
-    public getOfertas2(): Promise<Oferta[]>{
-        return new Promise((resolve,reject) => {
+    public getOfertas2(): Promise<Oferta[]> {
+        return new Promise((resolve, reject) => {
             //algum tipo de processamento que ao finalizar, chama a funcao resolve ou reject
             console.log('passou pelo promisse')
-            resolve(this.ofertas)
+
+            let deu_certo = false //simulando um erro para cair no reject
+            if (deu_certo) {
+                resolve(this.ofertas)
+            } else {
+                reject({codigo_erro: 404, mensagem_erro:'servidor nao encontrado'})
+            }
+
         })
     }
 
