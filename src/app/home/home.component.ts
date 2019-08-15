@@ -20,9 +20,14 @@ export class HomeComponent implements OnInit {
     // console.log(this.ofertas)
 
     this.ofertasService.getOfertas2()
-      .then(
-        (ofer: Oferta[]) => { this.ofertas = ofer} ,    //aqui é o primeiro parametro, o resolve
-        (param: any) => { console.log(param) }          //aqui é o segundo parametro, o reject
+      .then( //aqui é quando cai no resolve 
+        (ofer: Oferta[]) => { //ofer: Oferta[] é o que espera receber 
+          console.log('carregou depois de 3 segundos')
+          this.ofertas = ofer 
+        }                  
+      )
+      .catch( //aqui é quando cai no reject
+        (param: any) => { console.log(param) }  //param: any é o que espera receber
       )
 
   }

@@ -62,16 +62,25 @@ export class OfertasService {
     public getOfertas2(): Promise<Oferta[]> {
         return new Promise((resolve, reject) => {
             //algum tipo de processamento que ao finalizar, chama a funcao resolve ou reject
-            console.log('passou pelo promisse')
+            // console.log('passou pelo promisse')
 
-            let deu_certo = false //simulando um erro para cair no reject
+            let deu_certo = true //simulando um erro para cair no reject
             if (deu_certo) {
-                resolve(this.ofertas)
+                setTimeout(() => resolve(this.ofertas), 3000) //simulando 3seg pra obter a resposta
             } else {
-                reject({codigo_erro: 404, mensagem_erro:'servidor nao encontrado'})
+                reject({ codigo_erro: 404, mensagem_erro: 'servidor nao encontrado' })
             }
 
         })
+            .then((ofer: Oferta[]) => { //aqui ele capturou a resposta do resolve
+                //fazer altuma tratativa
+                console.log('primeiro then')
+                return ofer // aqui vai passar pro then de baixo, o then abaixo ira capturar
+            })
+            .then((ofe: Oferta[]) => {
+                console.log('segundo then')
+                return ofe
+            })
     }
 
 }
