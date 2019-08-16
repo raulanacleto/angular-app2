@@ -1,6 +1,7 @@
 import { Oferta } from './shared/oferta.model'
 import { HttpClient } from '@angular/common/http'; //Http em versao antiga
 import { Injectable } from '@angular/core'
+import { URL_API } from './app.api';
 
 //import 'rxjs/add/operator/toPromise'
 
@@ -9,24 +10,37 @@ export class OfertasService {
 
     private uri: string = 'http://localhost:3000/ofertas?destaque=true'
     private uriCategoria: string = 'http://localhost:3000/ofertas?categoria='
+    private uriId: string = 'http://localhost:3000/ofertas?id='
+
     public ofertas: Oferta[]
+    public ofe: Oferta
 
     constructor(private http: HttpClient) {
 
     }
 
+    public getOfertaPorId(id: number): Promise<Oferta> {
+        return this.http.get<Oferta>(`${URL_API}?id=${id}`)
+            .toPromise()
+            .then((resposta: any) => {
+                console.log("array inteiro:", resposta)
+                console.log("primeira posicao:", resposta)
+                return resposta[0]
+            })
+    }
+
     public getOfertas(): Promise<Oferta[]> {
         //efetuar uma requisisao http
         //retornar um promisse oferta[]
-        return this.http.get<Oferta[]>(this.uri)
+        return this.http.get<Oferta[]>(`${URL_API}?destaque=true`)
             .toPromise()
             .then(param => this.ofertas = param)
 
     }
 
-    public getOfertasPorCategoria(categoria: string): Promise<Oferta[]>{
-        console.log('buscando por: ' , this.uriCategoria + `${categoria}`)
-        return this.http.get<Oferta[]>(this.uriCategoria + `${categoria}`)
+    public getOfertasPorCategoria(categoria: string): Promise<Oferta[]> {
+        console.log('buscando por: ', `${URL_API}?categoria=${categoria}`)
+        return this.http.get<Oferta[]>(`${URL_API}?categoria=${categoria}`)
             .toPromise()
             .then(param => this.ofertas = param)
     }
