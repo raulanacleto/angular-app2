@@ -45,13 +45,17 @@ export class OfertaComponent implements OnInit {
     */
 
     //observable(observavel)
-    let meuObservableTeste = Observable.create((observer: Observer<string>)=>{ //pode ser de tipo number tbm e pode calcular abaixo
+    let meuObservableTeste = Observable.create((observer: Observer<string>) => { //pode ser de tipo number tbm e pode calcular abaixo
       observer.next('Primeiro evento da stream') //essa string vai ser enviada pro observador abaixo
+      //observer.error('algum erro foi encontrado na stream de eventos') //forcando erro pra cair no segundo parametro do observador
+      observer.complete()
     })
 
     //observable(observador)
     meuObservableTeste.subscribe(
-      (resultado: any) => {console.log(resultado)}
+      (resultado: any) => { console.log(resultado) }, //primeiro parametro é o de intrucao
+      (erro: any) => { console.log(erro) }, //segundo parametro é o de erro
+      ()=>console.log('stream de eventos foi finalizada') //terceiro parametro é quando completar
     )
   }
 
