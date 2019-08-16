@@ -31,7 +31,7 @@ export class OfertasService {
         return this.http.get(`${URL_API}/como-usar?id=${id}`)
             .toPromise()
             .then((resposta: any) => {
-                // console.log(resposta[0].descricao)
+                console.log(resposta[0].descricao)
                 return resposta[0].descricao
             })
     }
