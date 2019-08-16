@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core'
 export class OfertasService {
 
     private uri: string = 'http://localhost:3000/ofertas?destaque=true'
+    private uriCategoria: string = 'http://localhost:3000/ofertas?categoria='
     public ofertas: Oferta[]
 
     constructor(private http: HttpClient) {
@@ -21,6 +22,13 @@ export class OfertasService {
             .toPromise()
             .then(param => this.ofertas = param)
 
+    }
+
+    public getOfertasPorCategoria(categoria: string): Promise<Oferta[]>{
+        console.log('buscando por: ' , this.uriCategoria + `${categoria}`)
+        return this.http.get<Oferta[]>(this.uriCategoria + `${categoria}`)
+            .toPromise()
+            .then(param => this.ofertas = param)
     }
 
 
