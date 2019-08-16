@@ -19,10 +19,10 @@ export class HomeComponent implements OnInit {
     // this.ofertas = this.ofertasService.getOfertas()
     // console.log(this.ofertas)
 
-    this.ofertasService.getOfertas2()
+    this.ofertasService.getOfertas() //getOfertas2() esta comentado
       .then( //aqui é quando cai no resolve 
         (ofer: Oferta[]) => { //ofer: Oferta[] é o que espera receber 
-          console.log('carregou depois de 3 segundos')
+          // console.log('carregou depois de 3 segundos') - valido para metodo getOfertas2()
           this.ofertas = ofer 
         }                  
       )
