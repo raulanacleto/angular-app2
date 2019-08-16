@@ -1,8 +1,13 @@
 import { Oferta } from './shared/oferta.model'
-import { resolve } from 'url';
-import { reject } from 'q';
+import { HttpClient } from '@angular/common/http'; //Http em versao antiga
+import { Injectable } from '@angular/core'
 
+@Injectable()
 export class OfertasService {
+
+    constructor(private http: HttpClient) {
+        
+    }
 
     public ofertas: Array<Oferta> = [
         {
@@ -79,7 +84,13 @@ export class OfertasService {
             })
             .then((ofe: Oferta[]) => {
                 console.log('segundo then')
-                return ofe
+                return new Promise((resolve2, reject2) => { //criando outra promisse
+                    setTimeout(() => { resolve2(ofe) }, 3000) //setando timeout de mais 3 seg
+                })
+            })
+            .then((oferttt: Oferta[]) => {
+                console.log('terceiro then executado apos 3 segundos porque estava aguardando a promisse')
+                return oferttt
             })
     }
 
