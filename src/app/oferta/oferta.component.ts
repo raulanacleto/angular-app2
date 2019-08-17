@@ -13,9 +13,10 @@ import { interval } from 'rxjs'
 })
 export class OfertaComponent implements OnInit, OnDestroy {
 
+  /* //teste com observable
   private tempoObservableSubscription: Subscription
   private meuObservableTesteSubscription: Subscription
-
+  */
   public oferta: Oferta
 
   constructor(
@@ -23,13 +24,14 @@ export class OfertaComponent implements OnInit, OnDestroy {
     public ofertasService: OfertasService) {
   }
 
-  //se desinscrever dos observables quando sair da classe.
   ngOnDestroy() {
+    /* //teste com observable - se desinscrever dos observables quando sair da classe.
     this.meuObservableTesteSubscription.unsubscribe()
     this.tempoObservableSubscription.unsubscribe()
+    */
   }
 
-  ngOnInit() {
+  ngOnInit() { 
     console.log('ID recuperado da rota via snapshot:', this.route.snapshot.params['id'])
 
     this.ofertasService.getOfertaPorId(this.route.snapshot.params['id'])
@@ -42,15 +44,12 @@ export class OfertaComponent implements OnInit, OnDestroy {
     //   console.log('ID recuperado da rota via subscribe', parametro.id)
     // })
 
-
-
-
-
+    /* //teste com observable
     let tempo = interval(2000)
     this.tempoObservableSubscription = tempo.subscribe((intervalo: number) => {
       console.log('valor recuperado:', intervalo)
     })
-
+    
 
 
     //observable(observavel)
@@ -66,6 +65,8 @@ export class OfertaComponent implements OnInit, OnDestroy {
       (erro: any) => { console.log(erro) }, //segundo parametro é o de erro
       () => console.log('stream de eventos foi finalizada') //terceiro parametro é quando completar
     )
+    */
   }
+
 
 }
